@@ -124,7 +124,8 @@
         <div class="max-w-screen-xl mx-auto flex items-center justify-between py-3 px-4 md:px-8 h-18">
 
             <!-- Brand Logo -->
-            <a href="#" class="text-3xl font-bold text-slate-800 tracking-wider transition-colors duration-300">
+            <a href="{{ url('/') }}"
+                class="text-3xl font-bold text-slate-800 tracking-wider transition-colors duration-300">
                 Norez<span class="text-blue-500 text-3xl">.</span>
             </a>
 
@@ -1025,7 +1026,7 @@
     <div id="contact" class="section bg-gray-50 py-14">
         <section>
             <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div style="opacity: 1; transform: none;">
+                <div>
                     <h2 class="**text-[38px]** font-bold text-gray-900 mb-4 fade-up relative inline-block">
                         Get In Touch
                         <span class="absolute left-0 bottom-0 h-1 w-1/4 bg-blue-500 rounded-full"></span>
@@ -1036,7 +1037,7 @@
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="md:col-span-1 space-y-8">
+                    <div class="md:col-span-1 space-y-8 fade-up">
                         <div>
                             <h3 class="text-[18px] font-semibold mb-3 text-gray-700">Contact Information</h3>
                             <p class="text-gray-600 text-[16px]">Fill up the form and I'll get back to you as soon as
@@ -1047,14 +1048,15 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-mail w-5 h-5 mt-1 **text-blue-600**">
+                                    class="lucide lucide-mail w-5 h-5 mt-1 text-blue-600">
                                     <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                 </svg>
                                 <div>
                                     <h4 class="text-[18px] font-semibold text-gray-700">Email</h4>
                                     <p class="text-sm text-gray-600">
-                                        <a href="mailto:aathifzahir12@gmail.com">aathifzahir12@gmail.com</a>
+                                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=norezali.dev@gmail.com"
+                                            target="_blank">norezali.dev@gmail.com</a>
                                     </p>
                                 </div>
                             </div>
@@ -1062,7 +1064,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-phone w-5 h-5 mt-1 **text-blue-600**">
+                                    class="lucide lucide-phone w-5 h-5 mt-1 text-blue-600">
                                     <path
                                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                     </path>
@@ -1070,7 +1072,7 @@
                                 <div>
                                     <h4 class="text-[18px] font-semibold text-gray-700">Phone</h4>
                                     <p class="text-sm text-gray-600">
-                                        <a href="tel:+94 76 527 1411">+94 76 527 1411</a>
+                                        <a href="tel:+92 325 8061943">+92 325 8061943</a>
                                     </p>
                                 </div>
                             </div>
@@ -1078,7 +1080,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-map-pin w-5 h-5 mt-1 **text-blue-600**">
+                                    class="lucide lucide-map-pin w-5 h-5 mt-1 text-blue-600">
                                     <path
                                         d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
                                     </path>
@@ -1086,10 +1088,11 @@
                                 </svg>
                                 <div>
                                     <h4 class="text-[18px] font-semibold text-gray-700">Location</h4>
-                                    <p class="text-sm text-gray-600">Colombo, Sri Lanka</p>
+                                    <p class="text-sm text-gray-600">Faisalabad, Pakistan</p>
                                 </div>
                             </div>
                         </div>
+
                         <div>
                             <h3 class="text-[18px] font-semibold text-gray-700 py-2">Connect with me</h3>
                             <div class="flex space-x-4">
@@ -1134,10 +1137,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="md:col-span-2 ">
-                        <form class="space-y-6 bg-white p-8 rounded-2xl shadow-lg ">
-                            <input type="hidden" name="access_key" value="6c14b370-ac51-45bc-b933-1a3ed381b3d1">
-                            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    <div class="md:col-span-2 fade-up">
+                        <form class="space-y-6 bg-white p-8 rounded-2xl shadow-lg " id="contact-form">
+
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label for="name" class="text-sm font-medium **text-gray-700**">Your
@@ -1178,6 +1180,27 @@
             </div>
         </section>
     </div>
+
+    <div
+        class="bg-white/20 backdrop-blur-md border border-white/30 flex h-20 w-full items-center justify-between p-4 md:px-8 rounded-2xl shadow-lg">
+
+        <div class="flex items-center gap-2 md:pl-[120px]">
+            <svg class="text-blue-600" width="20" height="20" viewBox="0 0 210 210" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M30.2852 108.5C37.0623 101.723 48.6584 105.234 50.5381 114.632L56.3564 143.726C57.3065 148.476 61.0202 152.19 65.7705 153.14L94.8643 158.958C104.262 160.838 107.773 172.433 100.996 179.21L74.252 205.955C71.4149 208.792 67.3474 210.023 63.4131 209.236L18.6299 200.279C13.8795 199.329 10.1659 195.617 9.21582 190.866L0.259766 146.083C-0.527094 142.149 0.703973 138.081 3.54102 135.244L30.2852 108.5ZM64.8545 4.24414C68.0685 1.03016 72.8228 -0.0916344 77.1348 1.3457L170.473 32.458C174.056 33.6524 176.868 36.4646 178.062 40.0479L209.175 133.386C210.612 137.698 209.49 142.452 206.276 145.666L154.539 197.402C148.231 203.71 137.49 201.175 134.669 192.712L107.352 110.758C106.157 107.175 103.345 104.363 99.7617 103.169L17.8076 75.8506C9.34527 73.0295 6.80984 62.2892 13.1172 55.9814L64.8545 4.24414Z">
+                </path>
+            </svg>
+            <p class="font-figtree text-sm font-medium text-gray-800">norez ali</p>
+        </div>
+
+        <p class="text-gray-700 text-sm md:pr-[120px]">
+            Made with <a class="underline text-blue-700" href="https://laravel.com/docs/12.x/">Laravel</a>
+        </p>
+    </div>
+
+
+
 
     <script src="{{ asset('assets/js/nav.js') }}"></script>
 

@@ -187,3 +187,26 @@ document.querySelectorAll(".project-card").forEach((card) => {
         targetY = e.clientY - rect.top;
     });
 });
+
+document
+    .getElementById("contact-form")
+    .addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent default form submission
+
+        const name = encodeURIComponent(document.getElementById("name").value);
+        const email = encodeURIComponent(
+            document.getElementById("email").value
+        );
+        const subject = encodeURIComponent(
+            document.getElementById("subject").value
+        );
+        const message = encodeURIComponent(
+            document.getElementById("message").value
+        );
+
+        // Gmail compose URL
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=norezali.dev@gmail.com&su=${subject}&body=Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
+
+        // Open Gmail in a new tab
+        window.open(gmailLink, "_blank");
+    });

@@ -1,0 +1,78 @@
+name: CI/CD - Deploy Laravel + Vite to InfinityFree
+
+on:
+  push:
+    branches: ["main"] # Run on every push to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ─────────────────────────────────────────────
+      # 1. CHECKOUT REPOSITORY
+      # ─────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # ─────────────────────────────────────────────
+      # 2. INSTALL PHP, EXTENSIONS & COMPOSER
+      # ─────────────────────────────────────────────
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1" # PHP version InfinityFree supports
+          extensions: mbstring, intl, pdo, mysql, openssl, tokenizer
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Generate Laravel app key
+        run: php artisan key:generate --force
+
+      - name: Optimize Laravel
+        run: php artisan config:cache && php artisan route:cache && php artisan view:cache
+
+      # ─────────────────────────────────────────────
+      # 3. RUN LARAVEL TESTS (OPTIONAL BUT RECOMMENDED)
+      # ─────────────────────────────────────────────
+      - name: Run Laravel Tests
+        run: php artisan test --no-interaction --stop-on-error
+
+      # ─────────────────────────────────────────────
+      # 4. INSTALL NODE + BUILD ASSETS (VITE / TAILWIND / REACT / VUE)
+      # ─────────────────────────────────────────────
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Compile assets using Vite
+        run: npm run build
+
+      # ─────────────────────────────────────────────
+      # 5. DEPLOY PROJECT TO INFINITYFREE VIA FTP
+      # ─────────────────────────────────────────────
+      - name: Deploy Files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_ROOT }}/
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.github*
+            **/node_modules/**
+            **/tests/**
+            **/storage/logs/**
+            **/storage/framework/cache/**
+            **/vendor/bin/**
+            docker/**
+            README.md
+            phpunit.xml
