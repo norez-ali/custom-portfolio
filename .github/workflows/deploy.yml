@@ -1,8 +1,8 @@
-name: CI/CD - Deploy Laravel + Vite to InfinityFree
+name: CI/CD - Deploy Laravel + Vite to InfinityFree (PHP 8.2)
 
 on:
   push:
-    branches: ["main"] # Run on every push to main
+    branches: ["main"] # Run on every push to main branch
 
 jobs:
   deploy:
@@ -16,12 +16,12 @@ jobs:
         uses: actions/checkout@v3
 
       # ─────────────────────────────────────────────
-      # 2. INSTALL PHP, EXTENSIONS & COMPOSER
+      # 2. SETUP PHP 8.2 + COMPOSER
       # ─────────────────────────────────────────────
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1" # PHP version InfinityFree supports
+          php-version: "8.2"
           extensions: mbstring, intl, pdo, mysql, openssl, tokenizer
           coverage: none
 
@@ -35,13 +35,13 @@ jobs:
         run: php artisan config:cache && php artisan route:cache && php artisan view:cache
 
       # ─────────────────────────────────────────────
-      # 3. RUN LARAVEL TESTS (OPTIONAL BUT RECOMMENDED)
+      # 3. RUN LARAVEL TESTS (OPTIONAL)
       # ─────────────────────────────────────────────
       - name: Run Laravel Tests
         run: php artisan test --no-interaction --stop-on-error
 
       # ─────────────────────────────────────────────
-      # 4. INSTALL NODE + BUILD ASSETS (VITE / TAILWIND / REACT / VUE)
+      # 4. SETUP NODE + BUILD ASSETS
       # ─────────────────────────────────────────────
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -55,7 +55,7 @@ jobs:
         run: npm run build
 
       # ─────────────────────────────────────────────
-      # 5. DEPLOY PROJECT TO INFINITYFREE VIA FTP
+      # 5. DEPLOY TO INFINITYFREE VIA FTP
       # ─────────────────────────────────────────────
       - name: Deploy Files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

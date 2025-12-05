@@ -1195,7 +1195,7 @@
         </div>
 
         <p class="text-gray-700 text-sm md:pr-[120px]">
-            Made with <a class="underline text-blue-700" href="https://laravel.com/docs/12.x/">Laravel</a>
+            Made with <a class="underline text-blue-700" href="https://laravel.com/docs/12.x/">Laravel 12</a>
         </p>
     </div>
 
