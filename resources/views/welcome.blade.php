@@ -65,6 +65,42 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        .project-card {
+            position: relative;
+            overflow: visible;
+            border-radius: 1rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        /* Soft drop shadow on hover */
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Soft glowing brush spotlight */
+        .project-card .spotlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 250px;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(59, 130, 246, 0.32),
+                    rgba(59, 130, 246, 0.15) 40%,
+                    transparent 70%);
+            filter: blur(40px);
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease-out;
+        }
+
+        .project-card:hover .spotlight {
+            opacity: 1;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -116,8 +152,8 @@
                     class="text-slate-700 font-medium hover:text-blue-500 transition-colors duration-200 py-2 md:py-0 rounded-md">About</a>
                 <a href="#projects"
                     class="text-slate-700 font-medium hover:text-blue-500 transition-colors duration-200 py-2 md:py-0 rounded-md">Projects</a>
-                <a href="#pricing"
-                    class="text-slate-700 font-medium hover:text-blue-500 transition-colors duration-200 py-2 md:py-0 rounded-md">Pricing</a>
+                <a href="#skills"
+                    class="text-slate-700 font-medium hover:text-blue-500 transition-colors duration-200 py-2 md:py-0 rounded-md">Skills</a>
                 <a href="#contact"
                     class="text-slate-700 font-medium hover:text-blue-500 transition-colors duration-200 py-2 md:py-0 rounded-md">Contact</a>
             </div>
@@ -136,12 +172,12 @@
                         class="block py-2 px-3 text-slate-700 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-200">About</a>
                 </li>
                 <li>
-                    <a href="#prjoects"
+                    <a href="#projects"
                         class="block py-2 px-3 text-slate-700 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-200">Projects</a>
                 </li>
                 <li>
-                    <a href="#pricing"
-                        class="block py-2 px-3 text-slate-700 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-200">Pricing</a>
+                    <a href="#skills"
+                        class="block py-2 px-3 text-slate-700 rounded-lg hover:bg-blue-500 hover:text-white transition-colors duration-200">Skills</a>
                 </li>
                 <li>
                     <a href="#contact"
@@ -320,7 +356,9 @@
                             </h3>
                             <p class="text-[16px] text-gray-600"> Laravel developer with a strong foundation in
                                 building robust web applications.
-                                Experienced in developing custom solutions and optimizing backend workflows.
+                                Experienced in developing custom solutions using laravel packages like Breeze, Spatie,
+                                Cashier, Horizon, Sanctum, Reverb, Telescope, and Scout to
+                                optimize backend workflows.
                                 Additionally, has intermediate knowledge of WordPress plugin development,
                                 creating functional and scalable features to enhance website functionality.
                             </p>
@@ -478,7 +516,7 @@
                     <!-- Project Card 1 -->
                     <div class="relative fade-up project-card">
                         <div
-                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg  h-full">
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
                                 <img src="{{ asset('assets/projects/p4.jpg') }}" alt="Tutor Finder - Dashlite Tutor"
                                     class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-105">
@@ -545,7 +583,7 @@
                     <!-- Project Card 2 -->
                     <div class="relative fade-up project-card" style="animation-delay: 0.1s;">
                         <div
-                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg  h-full">
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
                                 <img src="{{ asset('assets/projects/p2.jpg') }}" alt="Educrat LMS"
                                     class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-105">
@@ -614,7 +652,7 @@
                     <!-- Project Card 3 -->
                     <div class="relative fade-up project-card" style="animation-delay: 0.2s;">
                         <div
-                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg  h-full">
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
                                 <img src="{{ asset('assets/projects/p3.jpg') }}" alt="Examism"
                                     class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-105">
@@ -678,7 +716,7 @@
                     <!-- Project Card 4 -->
                     <div class="relative fade-up project-card hidden" data-hidden style="animation-delay: 0.4s;">
                         <div
-                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg  h-full">
 
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
                                 <img src="{{ asset('assets/projects/p1.jpg') }}" alt="Sociala - Social Media App"
@@ -763,8 +801,383 @@
         </section>
     </div>
 
-    <div id="pricing" class="section bg-white">Pricing Plans</div>
-    <div id="contact" class="section bg-gray-50">Contact Us</div>
+    <div id="skills" class="section bg-white py-14">
+        <section>
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div style="opacity: 1; transform: none;">
+                    <h2 class="text-[38px] font-bold text-gray-900 mb-4 fade-up relative inline-block">
+                        Skills
+                        <span class="absolute left-0 bottom-0 h-1 w-1/4 bg-blue-500 rounded-full"></span>
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mb-12 text-[16px] fade-up">
+                        I've worked with a range of technologies in the
+                        web development world, from frontend to backend and everything in between.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style="opacity: 1;">
+
+                    <!-- Card 1 -->
+                    <div class="relative fade-up project-card">
+                        <div
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl
+                        shadow-md transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg h-full p-6">
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="p-2 bg-blue-100 text-primary rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-terminal h-5 w-5 text-blue-700">
+                                            <polyline points="4 17 10 11 4 5"></polyline>
+                                            <line x1="12" x2="20" y1="19" y2="19">
+                                            </line>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Skills</h3>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">PHP</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Laravel</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">JS</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Blade</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">REST
+                                        APIs</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">MySQL</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">AJAX</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">jQuery</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="relative fade-up project-card" style="animation-delay: 0.1s;">
+                        <div
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl
+                        shadow-md transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg h-full p-6">
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="p-2 bg-blue-100 text-primary rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-panels-top-left h-5 w-5 text-blue-700">
+                                            <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                            <path d="M3 9h18"></path>
+                                            <path d="M9 21V9"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Frontend Styling</h3>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">CSS</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Tailwind
+                                        CSS</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Bootstrap</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Responsive
+                                        Design</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">UI
+                                        Components</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="relative fade-up project-card" style="animation-delay: 0.2s;">
+                        <div
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl
+                        shadow-md transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg h-full p-6">
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="p-2 bg-blue-100 text-primary rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-code h-5 w-5 text-blue-700">
+                                            <polyline points="16 18 22 12 16 6"></polyline>
+                                            <polyline points="8 6 2 12 8 18"></polyline>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Backend Development</h3>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">PHP</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Laravel</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">REST
+                                        APIs</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">MVC
+                                        Architecture</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="relative fade-up project-card" style="animation-delay: 0.3s;">
+                        <div
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl
+                        shadow-md transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg h-full p-6">
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="p-2 bg-blue-100 text-primary rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-database h-5 w-5 text-blue-700">
+                                            <ellipse cx="12" cy="5" rx="9" ry="3">
+                                            </ellipse>
+                                            <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                                            <path d="M3 12A9 3 0 0 0 21 12"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Databases & Caching</h3>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">MySQL</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Redis</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Database
+                                        Caching</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Eloquent
+                                        ORM</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Query
+                                        Optimization</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="relative fade-up project-card" style="animation-delay: 0.4s;">
+                        <div
+                            class="relative flex flex-col overflow-hidden bg-white rounded-2xl
+                        shadow-md transition-all duration-300 transform hover:-translate-y-2 hover:shadow-lg h-full p-6">
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="p-2 bg-blue-100 text-primary rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-cpu h-5 w-5 text-blue-700">
+                                            <rect width="16" height="16" x="4" y="4" rx="2"></rect>
+                                            <rect width="6" height="6" x="9" y="9" rx="1"></rect>
+                                            <path d="M15 2v2"></path>
+                                            <path d="M15 20v2"></path>
+                                            <path d="M2 15h2"></path>
+                                            <path d="M2 9h2"></path>
+                                            <path d="M20 15h2"></path>
+                                            <path d="M20 9h2"></path>
+                                            <path d="M9 2v2"></path>
+                                            <path d="M9 20v2"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Tools & Technologies</h3>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Git</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">GitHub</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Composer</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Postman</span>
+                                    <span
+                                        class="text-sm rounded-full px-3 py-1 text-gray-600 bg-white border border-gray-300">Laravel
+                                        Artisan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div id="contact" class="section bg-gray-50 py-14">
+        <section>
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div style="opacity: 1; transform: none;">
+                    <h2 class="**text-[38px]** font-bold text-gray-900 mb-4 fade-up relative inline-block">
+                        Get In Touch
+                        <span class="absolute left-0 bottom-0 h-1 w-1/4 bg-blue-500 rounded-full"></span>
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mb-12 text-[16px] fade-up">
+                        Have a question or want to work together? Feel free to
+                        drop me a message. I'd love to hear from you!
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1 space-y-8">
+                        <div>
+                            <h3 class="text-[18px] font-semibold mb-3 text-gray-700">Contact Information</h3>
+                            <p class="text-gray-600 text-[16px]">Fill up the form and I'll get back to you as soon as
+                                possible.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-mail w-5 h-5 mt-1 **text-blue-600**">
+                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="text-[18px] font-semibold text-gray-700">Email</h4>
+                                    <p class="text-sm text-gray-600">
+                                        <a href="mailto:aathifzahir12@gmail.com">aathifzahir12@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-phone w-5 h-5 mt-1 **text-blue-600**">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                                <div>
+                                    <h4 class="text-[18px] font-semibold text-gray-700">Phone</h4>
+                                    <p class="text-sm text-gray-600">
+                                        <a href="tel:+94 76 527 1411">+94 76 527 1411</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-map-pin w-5 h-5 mt-1 **text-blue-600**">
+                                    <path
+                                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                    </path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <div>
+                                    <h4 class="text-[18px] font-semibold text-gray-700">Location</h4>
+                                    <p class="text-sm text-gray-600">Colombo, Sri Lanka</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-[18px] font-semibold text-gray-700 py-2">Connect with me</h3>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/norez-ali" target="_blank" rel="noopener noreferrer"
+                                    class="text-gray-600 transition-transform transform hover:rotate-6 hover:scale-110 hover:text-blue-500 p-2"
+                                    aria-label="GitHub" tabindex="0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                                        </path>
+                                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                    </svg>
+                                </a>
+
+                                <a href="https://linkedin.com/in/norez-ali" target="_blank" rel="noopener noreferrer"
+                                    class="text-gray-600 transition-transform transform hover:rotate-6 hover:scale-110 hover:text-blue-500 p-2"
+                                    aria-label="LinkedIn" tabindex="0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-linkedin">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                        </path>
+                                        <rect width="4" height="12" x="2" y="9"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=norezali.dev@gmail.com"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="text-gray-600 transition-transform transform hover:rotate-6 hover:scale-110 hover:text-blue-500 p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail">
+                                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 ">
+                        <form class="space-y-6 bg-white p-8 rounded-2xl shadow-lg ">
+                            <input type="hidden" name="access_key" value="6c14b370-ac51-45bc-b933-1a3ed381b3d1">
+                            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label for="name" class="text-sm font-medium **text-gray-700**">Your
+                                        Name</label>
+                                    <input
+                                        class="flex h-10 w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-base placeholder:text-gray-400 hover:border-blue-400 focus:outline-none focus:border-blue-500 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                        id="name" name="name" placeholder="John Doe" required=""
+                                        value="">
+                                </div>
+                                <div class="space-y-2">
+                                    <label for="email" class="text-sm font-medium **text-gray-700**">Your
+                                        Email</label>
+                                    <input type="email"
+                                        class="flex h-10 w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-base placeholder:text-gray-400 hover:border-blue-400 focus:outline-none focus:border-blue-500 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                        id="email" name="email" placeholder="john@example.com" required=""
+                                        value="">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="subject" class="text-sm font-medium **text-gray-700**">Subject</label>
+                                <input
+                                    class="flex h-10 w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-base placeholder:text-gray-400 hover:border-blue-400 focus:outline-none focus:focus:border-blue-500 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                    id="subject" name="subject" placeholder="How can I help you?" required=""
+                                    value="">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="message" class="text-sm font-medium **text-gray-700**">Message</label>
+                                <textarea
+                                    class="flex min-h-[120px] w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm placeholder:text-gray-400 hover:border-blue-400 focus:outline-none focus:border-blue-500 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50"
+                                    id="message" name="message" placeholder="Your message here..." rows="5" required=""></textarea>
+                            </div>
+                            <button
+                                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 shadow-[0_4px_15px_rgba(59,130,246,0.3)] hover:shadow-[0_6px_20px_rgba(59,130,246,0.4)] h-10 px-4 py-2 w-full"
+                                type="submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <script src="{{ asset('assets/js/nav.js') }}"></script>
 

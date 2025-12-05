@@ -158,3 +158,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.querySelectorAll(".project-card").forEach((card) => {
+    const spotlight = document.createElement("div");
+    spotlight.classList.add("spotlight");
+    card.appendChild(spotlight);
+
+    let targetX = 0,
+        targetY = 0;
+    let currX = 0,
+        currY = 0;
+
+    const animate = () => {
+        currX += (targetX - currX) * 0.08; // smoothing
+        currY += (targetY - currY) * 0.08;
+
+        spotlight.style.left = currX + "px";
+        spotlight.style.top = currY + "px";
+
+        requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        targetX = e.clientX - rect.left;
+        targetY = e.clientY - rect.top;
+    });
+});
