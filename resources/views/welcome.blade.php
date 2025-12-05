@@ -463,7 +463,7 @@
         <section>
             <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <h2 class="text-[38px] font-bold text-gray-900 mb-4 fade-up relative inline-block pb-3">
+                <h2 class="text-[38px] font-bold text-gray-900 mb-4 fade-up relative inline-block">
                     Projects
                     <span class="absolute left-0 bottom-0 h-1 w-1/4 bg-blue-500 rounded-full"></span>
                 </h2>
@@ -480,7 +480,7 @@
                         <div
                             class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
-                                <img src="{{ asset('assets/projects/p4.jpg') }}" alt="Internship Finder - ProIntern"
+                                <img src="{{ asset('assets/projects/p4.jpg') }}" alt="Tutor Finder - Dashlite Tutor"
                                     class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-105">
                                 <div
                                     class="absolute inset-0 bg-blue-500/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity z-20">
@@ -502,19 +502,25 @@
 
                             <div class="p-6 flex flex-col flex-1 justify-between">
                                 <div class="space-y-4">
-                                    <h3 class="text-xl font-bold text-gray-900">Internship Finder - ProIntern</h3>
-                                    <p class="text-gray-600 text-sm">A React Native and Firebase app for managing
-                                        internships and applications, helping students find relevant opportunities.</p>
+                                    <h3 class="text-xl font-bold text-gray-900">Dashlite Tutor - Tutor Finder</h3>
+                                    <p class="text-gray-600 text-sm text-justify"> Tutor Finder — a Laravel platform
+                                        with Student,
+                                        Teacher, and Admin roles.
+                                        Teachers register and become visible to students only after admin approval,
+                                        enabling easy tutor selection based on subjects.</p>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">React
-                                            Native</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Firebase</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Laravel</span>
+                                        <span
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">MySQL</span>
+                                        <span
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Blade</span>
                                         <span
                                             class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Authentication</span>
-                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Cloud
-                                            Functions</span>
+                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Role
+                                            Management</span>
                                     </div>
+
                                 </div>
                                 <div class="flex gap-3 pt-4">
                                     <a href="https://github.com/norez-ali" target="_blank"
@@ -541,7 +547,7 @@
                         <div
                             class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
-                                <img src="{{ asset('assets/projects/p2.jpg') }}" alt="MSR Tailor Store"
+                                <img src="{{ asset('assets/projects/p2.jpg') }}" alt="Educrat LMS"
                                     class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-105">
                                 <div
                                     class="absolute inset-0 bg-blue-500/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity z-20">
@@ -563,19 +569,28 @@
 
                             <div class="p-6 flex flex-col flex-1 justify-between">
                                 <div class="space-y-4">
-                                    <h3 class="text-xl font-bold text-gray-900">MSR Tailor Store</h3>
-                                    <p class="text-gray-600 text-sm">A full-stack application with React and Node.js
-                                        for order placement and checkout functionality for a tailor store.</p>
+                                    <h3 class="text-xl font-bold text-gray-900">Educrat LMS</h3>
+                                    <p class="text-gray-600 text-sm text-justify"> A Laravel-based LMS with Student,
+                                        Teacher, and
+                                        Admin roles. Teachers manage their assigned courses,
+                                        while students access lessons, quizzes, and activities, with real-time progress
+                                        tracking throughout the course.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">React</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Laravel</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Node.js</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">PHP</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Express</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">MySQL</span>
+                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Stripe
+                                            Payments</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">MongoDB</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Authentication</span>
+                                        <span
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Real-time
+                                            Progress</span>
                                     </div>
+
                                 </div>
                                 <div class="flex gap-3 pt-4">
                                     <a href="https://github.com/norez-ali" target="_blank"
@@ -601,7 +616,7 @@
                         <div
                             class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
-                                <img src="{{ asset('assets/projects/p3.jpg') }}" alt="Internship Finder - ProIntern"
+                                <img src="{{ asset('assets/projects/p3.jpg') }}" alt="Examism"
                                     class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-105">
                                 <div
                                     class="absolute inset-0 bg-blue-500/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity z-20">
@@ -623,18 +638,23 @@
 
                             <div class="p-6 flex flex-col flex-1 justify-between">
                                 <div class="space-y-4">
-                                    <h3 class="text-xl font-bold text-gray-900">Internship Finder - ProIntern</h3>
-                                    <p class="text-gray-600 text-sm">A React Native and Firebase app for managing
-                                        internships and applications, helping students find relevant opportunities.</p>
+                                    <h3 class="text-xl font-bold text-gray-900">Examism</h3>
+                                    <p class="text-gray-600 text-sm text-justify">Examism — an online platform for
+                                        purchasing course
+                                        vouchers in bulk.
+                                        Includes an admin-managed coupon system where users can validate coupons
+                                        and automatically receive the applicable discount during checkout.</p>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">React
-                                            Native</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Firebase</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Laravel</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Authentication</span>
-                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Cloud
-                                            Functions</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">PHP</span>
+                                        <span
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">MySQL</span>
+                                        <span
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Blade</span>
+                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Coupon
+                                            System</span>
                                     </div>
                                 </div>
                                 <div class="flex gap-3 pt-4">
@@ -661,7 +681,7 @@
                             class="relative flex flex-col overflow-hidden bg-white rounded-2xl shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:ring-1 hover:ring-blue-500 h-full">
 
                             <div class="relative overflow-hidden rounded-t-2xl h-48">
-                                <img src="{{ asset('assets/projects/p1.jpg') }}" alt="Py Scrap - Amazon Web Scraper"
+                                <img src="{{ asset('assets/projects/p1.jpg') }}" alt="Sociala - Social Media App"
                                     class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-105">
                                 <div
                                     class="absolute inset-0 bg-blue-500/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity z-20">
@@ -683,19 +703,24 @@
 
                             <div class="p-6 flex flex-col flex-1 justify-between">
                                 <div class="space-y-4">
-                                    <h3 class="text-xl font-bold text-gray-900">Py Scrap - Amazon Web Scraper</h3>
-                                    <p class="text-gray-600 text-sm">A Python-based scraper using Scrapy to extract
-                                        product details from Amazon, with MongoDB integration for data storage.</p>
+                                    <h3 class="text-xl font-bold text-gray-900">Sociala - Social Media App</h3>
+                                    <p class="text-gray-600 text-sm text-justify">A Laravel-based social media platform
+                                        where users can register, create posts, interact through likes and comments, and
+                                        engage in real-time updates powered by Laravel Reverb.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Python</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Laravel</span>
+                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Laravel
+                                            Reverb</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Scrapy</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Real-time
+                                            Updates</span>
                                         <span
-                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">MongoDB</span>
-                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">Data
-                                            Mining</span>
+                                            class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">MySQL</span>
+                                        <span class="text-xs rounded-full px-3 py-1 text-blue-700 bg-blue-100">REST
+                                            API</span>
                                     </div>
+
                                 </div>
                                 <div class="flex gap-3 pt-4">
                                     <a href="https://github.com/norez-ali" target="_blank"
