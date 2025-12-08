@@ -80,7 +80,7 @@ jobs:
       # 7. Upload all files to public_html
       # -----------------------------
       - name: Deploy to Hostinger public_html via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}

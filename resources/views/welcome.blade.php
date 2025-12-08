@@ -445,7 +445,7 @@
                         </div>
 
                         <div class="text-center lg:text-left">
-                            <h3 class="text-[24px] font-bold text-gray-900">Norez ALi</h3>
+                            <h3 class="text-[24px] font-bold text-gray-900">Norez Ali</h3>
                             <p class="text-gray-500 text-[16px]">Laravel | Wordpress Plugin Developer</p>
                         </div>
 
