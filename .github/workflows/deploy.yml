@@ -1,89 +1,63 @@
-name: Deploy Laravel to Hostinger (PHP 8.4)
+name: Deploy Laravel to Hostinger
 
 on:
   push:
-    branches: ["main"] # Change to your branch if different
+    branches: ["main"]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # -----------------------------
-      # 1. Checkout code
-      # -----------------------------
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # -----------------------------
-      # 2. Setup PHP 8.4
-      # -----------------------------
+      # ---------- PHP & Composer ----------
       - name: Setup PHP 8.4
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.4"
-          extensions: mbstring, bcmath, intl, pdo_mysql
-          tools: composer:v2
+          extensions: mbstring, intl, pdo, pdo_mysql
+          coverage: none
 
-      # -----------------------------
-      # 3. Install Composer dependencies
-      # -----------------------------
-      - name: Install Composer dependencies
-        run: composer install --no-dev --prefer-dist --optimize-autoloader
+      - name: Install Dependencies (Production)
+        run: composer install --no-dev --optimize-autoloader
 
-      # -----------------------------
-      # 4. Install Node and build frontend
-      # -----------------------------
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+      # ---------- Laravel Build Commands ----------
+      - name: Run Laravel Optimization
+        run: |
+          php artisan config:clear
+          php artisan cache:clear
+          php artisan route:clear
+          php artisan view:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache || true
 
-      - name: Install NPM packages
-        run: npm ci || true
-
-      - name: Build assets
-        run: npm run build || true
-
-      # -----------------------------
-      # 5. Prepare deployment folder
-      # -----------------------------
-      - name: Prepare deploy folder
+      # ---------- Create Deploy Folder ----------
+      - name: Prepare Deploy Folder
         run: |
           mkdir deploy
-          # Copy all Laravel files to deploy
-          rsync -av --exclude=".git" --exclude=".github" ./ deploy/
-          # Move public folder content to root
+          rsync -av \
+            --exclude=".git" \
+            --exclude=".github" \
+            --exclude="node_modules" \
+            --exclude="tests" \
+            ./ deploy/
+
+          # Move public contents to root (Hostinger's public_html)
           rsync -av ./public/ ./deploy/
+
+          # Remove original public folder inside deploy
           rm -rf ./deploy/public
 
-      # -----------------------------
-      # 6. Clear & cache Laravel config on server (via PHP script)
-      # -----------------------------
-      - name: Prepare artisan deploy script
-        run: |
-          echo "<?php
-          require __DIR__.'/vendor/autoload.php';
-          \$app = require __DIR__.'/bootstrap/app.php';
-          \$kernel = \$app->make(Illuminate\Contracts\Console\Kernel::class);
-          echo '<pre>';
-          \$kernel->call('config:clear');
-          \$kernel->call('config:cache');
-          \$kernel->call('route:clear');
-          \$kernel->call('route:cache');
-          \$kernel->call('view:clear');
-          \$kernel->call('view:cache');
-          echo '✅ Laravel caches cleared & rebuilt';
-          ?>" > deploy/artisan_deploy.php
-
-      # -----------------------------
-      # 7. Upload all files to public_html
-      # -----------------------------
-      - name: Deploy to Hostinger public_html via FTP
+      # ---------- FTP DEPLOY ----------
+      - name: Deploy to Hostinger FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: 82.198.227.139
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
           local-dir: deploy/
-          server-dir: ${{ secrets.FTP_PUBLIC_HTML_PATH }}
+          server-dir: public_html/
