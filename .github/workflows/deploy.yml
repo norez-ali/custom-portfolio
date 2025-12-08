@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      # Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # ---------- PHP & Composer ----------
+      # ---- PHP Setup ----
       - name: Setup PHP 8.4
         uses: shivammathur/setup-php@v2
         with:
@@ -20,22 +21,31 @@ jobs:
           extensions: mbstring, intl, pdo, pdo_mysql
           coverage: none
 
+      # ---- Composer Install ----
       - name: Install Dependencies (Production)
         run: composer install --no-dev --optimize-autoloader
 
-      # ---------- Laravel Build Commands ----------
-      - name: Run Laravel Optimization
+      # ---- Create Safe .env For CI ----
+      - name: Create CI environment
         run: |
-          php artisan config:clear
-          php artisan cache:clear
-          php artisan route:clear
-          php artisan view:clear
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache || true
+          cp .env .env.ci
+          mv .env.ci .env
+          echo "APP_ENV=production" >> .env
+          echo "DB_CONNECTION=none" >> .env
 
-      # ---------- Create Deploy Folder ----------
-      - name: Prepare Deploy Folder
+      # ---- Laravel Optimization ----
+      - name: Laravel Optimize
+        run: |
+          php artisan config:clear --no-ansi
+          php artisan cache:clear --no-ansi
+          php artisan view:clear --no-ansi
+          php artisan route:clear --no-ansi
+          php artisan config:cache --no-ansi
+          php artisan route:cache --no-ansi || true
+          php artisan view:cache --no-ansi || true
+
+      # ---- Build Deploy Folder ----
+      - name: Build Deploy Folder
         run: |
           mkdir deploy
           rsync -av \
@@ -45,14 +55,14 @@ jobs:
             --exclude="tests" \
             ./ deploy/
 
-          # Move public contents to root (Hostinger's public_html)
+          # Move public folder to root of deploy
           rsync -av ./public/ ./deploy/
 
-          # Remove original public folder inside deploy
+          # Remove nested public folder (we already merged it)
           rm -rf ./deploy/public
 
-      # ---------- FTP DEPLOY ----------
-      - name: Deploy to Hostinger FTP
+      # ---- FTP Deployment ----
+      - name: Upload to Hostinger public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: 82.198.227.139
