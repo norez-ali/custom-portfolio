@@ -56,8 +56,12 @@ jobs:
           local-dir: ./ # deploy repo root (flattened)
           delete-remote: false
           exclude: |
-            **/.git*
-            **/.github/**
-            **/node_modules/**
-            **/vendor/**
-            **/.env
+            .git
+            .git/**
+            .github
+            .github/**
+            node_modules
+            node_modules/**
+            vendor
+            vendor/**
+            .env
