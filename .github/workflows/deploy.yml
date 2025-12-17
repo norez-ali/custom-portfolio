@@ -53,7 +53,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           server-dir: ${{ secrets.FTP_DIR }}/
-          local-dir: ${{ secrets.FTP_DIR }} # deploy repo root (flattened)
+          local-dir: ${{ secrets.FTP_DIR }}/ # deploy repo root (flattened)
           dangerous-clean-slate: false
           exclude: |
             .git
