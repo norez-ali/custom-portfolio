@@ -1,4 +1,4 @@
-name: Deploy Laravel to Hostinger
+name: Deploy Laravel Flattened to Hostinger
 
 on:
   push:
@@ -31,8 +31,12 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
-      - name: Build assets
+      - name: Build Vite assets
         run: npm run build
+
+      # Optional: flatten public folder into root
+      - name: Flatten public folder
+        run: cp -r public/* ./
 
       - name: Laravel optimizations
         run: |
@@ -49,7 +53,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           server-dir: ${{ secrets.FTP_DIR }}/
-          local-dir: ./ # important: deploy repo root
+          local-dir: ./ # deploy repo root (flattened)
           exclude: |
             **/.git*
             **/.github/**
