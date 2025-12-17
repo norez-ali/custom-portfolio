@@ -1,73 +1,70 @@
-name: Deploy Laravel to Hostinger
+name: Deploy Laravel to Hostinger (FTP)
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo
-      - name: Checkout code
+      # 1. Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ---- PHP Setup ----
-      - name: Setup PHP 8.4
+      # 2. Setup PHP 8.4
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.4"
-          extensions: mbstring, intl, pdo, pdo_mysql
-          coverage: none
+          extensions: mbstring, bcmath, intl, zip
+          tools: composer:v2
 
-      # ---- Composer Install ----
-      - name: Install Dependencies (Production)
-        run: composer install --no-dev --optimize-autoloader
-
-      # ---- Create Safe .env For CI ----
-      - name: Create CI environment
+      # 3. Install Composer dependencies
+      - name: Install Composer dependencies
         run: |
-          cp .env .env.ci
-          mv .env.ci .env
-          echo "APP_ENV=production" >> .env
-          echo "DB_CONNECTION=none" >> .env
+          composer install \
+            --no-dev \
+            --prefer-dist \
+            --optimize-autoloader
 
-      # ---- Laravel Optimization ----
-      - name: Laravel Optimize
-        run: |
-          php artisan config:clear --no-ansi
-          php artisan cache:clear --no-ansi
-          php artisan view:clear --no-ansi
-          php artisan route:clear --no-ansi
-          php artisan config:cache --no-ansi
-          php artisan route:cache --no-ansi || true
-          php artisan view:cache --no-ansi || true
-
-      # ---- Build Deploy Folder ----
-      - name: Build Deploy Folder
-        run: |
-          mkdir deploy
-          rsync -av \
-            --exclude=".git" \
-            --exclude=".github" \
-            --exclude="node_modules" \
-            --exclude="tests" \
-            ./ deploy/
-
-          # Move public folder to root of deploy
-          rsync -av ./public/ ./deploy/
-
-          # Remove nested public folder (we already merged it)
-          rm -rf ./deploy/public
-
-      # ---- FTP Deployment ----
-      - name: Upload to Hostinger public_html
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      # 4. Setup Node.js (for Vite)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          server: 82.198.227.139
+          node-version: "20"
+
+      # 5. Install NPM dependencies
+      - name: Install NPM dependencies
+        run: npm install
+
+      # 6. Build Vite assets
+      - name: Build assets
+        run: npm run build
+
+      # 7. Laravel optimizations (NO DB)
+      - name: Laravel optimizations
+        run: |
+          php artisan key:generate --force || true
+          php artisan config:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+      # 8. Upload to Hostinger via FTP
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          local-dir: deploy/
-          server-dir: public_html/
+          port: ${{ secrets.FTP_PORT }}
+          server-dir: ${{ secrets.FTP_DIR }}/
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
+            **/vendor/**
+            **/.env
