@@ -1,4 +1,4 @@
-name: Deploy Laravel Flattened to Hostinger
+name: Deploy Laravel to Hostinger (Shared Hosting)
 
 on:
   push:
@@ -10,58 +10,59 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      # 1️⃣ Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup PHP
+      # 2️⃣ Setup PHP 8.4
+      - name: Setup PHP 8.4
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.4"
-          extensions: mbstring, bcmath, intl, zip
-          tools: composer:v2
+          extensions: mbstring, bcmath, ctype, fileinfo, openssl, pdo, tokenizer, xml
+          coverage: none
 
+      # 3️⃣ Install Composer dependencies
       - name: Install Composer dependencies
-        run: composer install --no-dev --prefer-dist --optimize-autoloader
+        run: |
+          composer install \
+            --no-dev \
+            --prefer-dist \
+            --optimize-autoloader
 
+      # 4️⃣ Setup Node.js v22.17.0
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22.17.0"
 
-      - name: Install NPM dependencies
+      # 5️⃣ Install Node dependencies
+      - name: Install Node dependencies
         run: npm install
 
-      - name: Build Vite assets
+      # 6️⃣ Build frontend assets (Vite / Mix)
+      - name: Build assets
         run: npm run build
 
-      # Optional: flatten public folder into root
-      - name: Flatten public folder
-        run: cp -r public/* ./
-
-      - name: Laravel optimizations
+      # 7️⃣ Prepare deployment directory (flattened structure)
+      - name: Prepare deployment files
         run: |
-          php artisan key:generate --force || true
-          php artisan config:clear
-          php artisan route:clear
-          php artisan view:clear
+          mkdir deploy
+          rsync -av \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.github' \
+            --exclude='.env' \
+            ./ deploy/
 
-      - name: Deploy via FTP
+      # 8️⃣ Deploy to Hostinger via FTP (public_html)
+      - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          server-dir: ${{ secrets.FTP_DIR }}/
-          local-dir: ./ # deploy repo root (flattened)
+          local-dir: deploy/
+          server-dir: ./
           dangerous-clean-slate: false
-          exclude: |
-            .git
-            .git/**
-            .github
-            .github/**
-            node_modules
-            node_modules/**
-            vendor
-            vendor/**
-            .env

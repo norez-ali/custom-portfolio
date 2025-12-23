@@ -198,7 +198,7 @@
             <div class="flex flex-col max-w-xl space-y-6 text-center lg:text-left">
                 <span class="text-sm md:text-base font-medium text-blue-500 opacity-90 fade-up">Hello! I'm</span>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold fade-up">
-                    Norez <span class="highlight-text text-blue-500">Ali</span></h1>
+                    Norez <span class="highlight-text text-blue-500">Ali, ci/cd</span></h1>
                 <p class="text-xl md:text-2xl text-gray-500 font-light fade-up">
                     Laravel Developer</p>
                 <p class="text-gray-600 fade-up">Building elegant solutions to complex
